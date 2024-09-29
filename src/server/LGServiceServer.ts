@@ -73,7 +73,7 @@ export default class LGServiceServer {
       dataValue: value,
     })
       .then(() => {
-        res.status(200).json({ message: `Temperature set to ${value}` });
+        res.status(200).json({ message: `Cooling to ${value}` });
       })
       .catch((error) => {
         console.error('Error setting temperature:', error);

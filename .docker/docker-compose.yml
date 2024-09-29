@@ -7,9 +7,10 @@ services:
       dockerfile: .docker/DockerFile.node
     command: >
       /bin/sh -c "
-      cp /usr/src/app/configs/.env /usr/src/app/dist/.env &&
-      cat dist/.env &&
-      npm run publish
+      cp /usr/src/app/configs/.env /usr/src/app/.env &&
+      sleep 5 &&
+      cat /usr/src/app/dist/.env &&
+      node dist/server/index.js
       "
     ports:
       - "3000:3000"
