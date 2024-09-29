@@ -1,0 +1,20 @@
+# Use Node.js official image
+FROM node:18-alpine
+
+# Set the working directory inside the container
+WORKDIR /usr/src/app
+
+# Copy all the application files
+COPY ../ .
+
+# Install dependencies
+RUN npm install
+
+# Build the application
+RUN npm run build
+
+# Set the working directory back to /usr/src/app
+WORKDIR /usr/src/app
+
+# Run the built application
+# CMD ["node", "dist/server/index.js"]

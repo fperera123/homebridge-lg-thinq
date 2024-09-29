@@ -20,6 +20,8 @@ export default class LGServiceServer {
   constructor() {
     this.deviceId = process.env.DEVICE_ID || 'default-device-id';
 
+    console.log('Device ID:', this.deviceId);
+
     this.app = express();
     this.app.use(bodyParser.json());
 

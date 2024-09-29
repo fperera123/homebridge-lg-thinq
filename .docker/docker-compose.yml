@@ -1,0 +1,26 @@
+version: '3'
+services:
+  app:
+    container_name: hb_app
+    build:
+      context: ..
+      dockerfile: .docker/DockerFile.node
+    command: >
+      /bin/sh -c "
+      cp /usr/src/app/configs/.env /usr/src/app/dist/.env &&
+      cat dist/.env &&
+      npm run publish
+      "
+    ports:
+      - "3000:3000"
+    volumes:
+      - /root/data/com.deviitor.hb/configs:/usr/src/app/configs
+    networks:
+      - hb_api_network
+      - apps_https_network
+
+networks:
+    hb_api_network:
+        driver: bridge
+    apps_https_network:
+        external: true
