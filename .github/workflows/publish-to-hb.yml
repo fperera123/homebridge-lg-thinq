@@ -1,0 +1,30 @@
+name: Publish API to hb.deviitor.com
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: SSH into Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        script: |
+          set -e
+          cd /root/apps/com.deviitor.hb/
+          git add .
+          git stash
+          git pull origin master
+          cd /root/apps/com.deviitor.hb/.docker
+          docker-compose -p hb down && docker-compose -p hb up --build -d
