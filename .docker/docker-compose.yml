@@ -8,6 +8,7 @@ services:
     command: >
       /bin/sh -c "
       cp /usr/src/app/configs/.env /usr/src/app/.env &&
+      cp /usr/src/app/configs/.env /usr/src/app/dist/.env &&
       sleep 5 &&
       cat /usr/src/app/dist/.env &&
       node dist/server/index.js
