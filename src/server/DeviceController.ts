@@ -23,6 +23,7 @@ export class DeviceController {
       ctrlKey = 'basicCtrl',
       ctrlPath = 'control-sync') {
       const id = device instanceof Device ? device.id : device;
+
       return this.api.sendCommandToDevice(id, values, command, ctrlKey, ctrlPath)
         .then(response => {
           if (response.resultCode === '0000') {
