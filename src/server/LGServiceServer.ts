@@ -97,7 +97,7 @@ export default class LGServiceServer {
     this.deviceController
       .deviceControl(this.deviceId, {
         dataKey: 'airState.tempState.target',
-        dataValue: 1,
+        dataValue: value,
       })
       .then(() => {
         res.status(200).json({ message: `Cooling to ${value}` });
